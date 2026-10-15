@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Buscar juego en Steam",
+  "version": "1.0.6",
+  "description": "Selecciona un título y abre el primer juego de Steam en una pestaña nueva.",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "offscreen",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://store.steampowered.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/steam-16.png",
+    "32": "icons/steam-32.png",
+    "48": "icons/steam-48.png",
+    "128": "icons/steam-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://store.steampowered.com/search/*"
+      ],
+      "js": [
+        "open-first.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "minimum_chrome_version": "116"
+}
